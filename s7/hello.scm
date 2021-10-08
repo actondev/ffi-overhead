@@ -1,6 +1,6 @@
 ;; (display "hi from s7")
 ;; (newline)
-(format #t "args ~A\n" argv)
+;; (format #t "args ~A\n" argv)
 ;; (newline)
 (define n (string->number (argv 2)))
 ;; (format #t "n is ~A\n" n)
@@ -8,7 +8,9 @@
 (define start (current-timestamp))
 (do ((i 0 (+ 1 i)))
     ((= i n) i)
-  (set! x (plusone-opt x)))
+  (set! x (plusone x))
+  ;; (set! x (+ 1 x))
+  )
 
 (define end (current-timestamp))
 (format *stderr* "x is ~A\n" x)

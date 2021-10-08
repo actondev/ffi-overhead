@@ -9,12 +9,12 @@ CFLAGS += -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 N1 = newplus
 DIR1 = $(PROJECT_DIR)/$(N1)
 
-: foreach *.c |> !cc |>
+#: foreach *.c |> !cc |>
 
 # ===================================== shared lib containing all the deps
 
-: *.o |> !ar |>
-: *.a $(PROJECT_DIR)/$(N1)/_.a |> !cc_shared |>
+# : *.o |> !ar |>
+# : *.a $(PROJECT_DIR)/$(N1)/_.a |> !cc_shared |>
 
-: Hello.java |> $(JAVA_HOME)/bin/javac -d .. %f |> %B.class
+# : Hello.java |> $(JAVA_HOME)/bin/javac -d .. %f |> %B.class
 

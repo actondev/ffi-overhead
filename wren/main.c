@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
     
     //fprintf(stdout, "Found hello.wren\n%s\n", script);
     
-    WrenInterpretResult result = wrenInterpret(vm, script);
+    WrenInterpretResult result = wrenInterpret(vm, "main", script);
     if (result == WREN_RESULT_SUCCESS)
     {
         printf("%lld\n", ts_stop - ts_start);

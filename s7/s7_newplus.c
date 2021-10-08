@@ -71,5 +71,3 @@ int main(int argc, char **argv) {
 
   s7_free(sc);
 }
-
-

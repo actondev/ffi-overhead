@@ -1,0 +1,37 @@
+#+PROPERTY: header-args:sh :session *ffi*
+
+#+begin_src sh
+calls=1000000 # 1M
+calls=10000000 # 10M
+calls=100000000 # 100M
+
+luajit hello.lua $calls
+luajit -joff hello.lua $calls
+./s7/s7_newplus ./s7/hello.scm $calls
+./c_hello $calls
+./cpp_hello $calls
+node hello.js $calls
+node hello.js $calls scoped
+python3 hello.py $calls
+./wren_hello hello.wren $calls
+#+end_src
+  - luajit
+    - 10M: 45ms
+      - no ffi: 30 (basically the same)
+      - -joff: 1300
+      - joff, not ffi: 90
+  - s7
+    - 10M: 1100
+      so, we don't actually measure the ffi speed, but the loop
+      - native =(set! x (+ 1 x))= 1160
+      - ffi: =(set! x (plusone x))= 1100
+    - 100M: 53637ms
+  - node
+    - 10M: 190
+    - 10M: no ffi: 9
+      WTF!
+    - 10M scoped: 330
+  - python
+    - 10M: 3051
+  - wren:
+    - 10M: 350
